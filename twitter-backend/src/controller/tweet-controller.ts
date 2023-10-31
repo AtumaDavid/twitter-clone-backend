@@ -30,7 +30,20 @@ export const getAllTweets = async (
   next: NextFunction
 ) => {
   // res.status(501).json({ error: "Not implemented" });
-  const allTweets = await prisma.tweet.findMany();
+  //{include: {user: true}}--- every tweet to contain info about user. check: model Tweet(schema.prisma): "user"
+  const allTweets = await prisma.tweet.findMany({
+    include: {
+      user: {
+        select: {
+          name: true,
+          username: true,
+          id: true,
+          image: true,
+        },
+      },
+    },
+  });
+
   res.json(allTweets);
 };
 
@@ -39,9 +52,11 @@ export const getSpecificTweet = async (
   res: Response,
   next: NextFunction
 ) => {
-  // res.status(501).json({ error: "Not implemented" });
   const { id } = req.params;
-  const oneTweet = await prisma.user.findUnique({ where: { id: Number(id) } });
+  const oneTweet = await prisma.tweet.findUnique({
+    where: { id: Number(id) },
+    include: { user: true },
+  });
   if (!oneTweet) {
     res.status(404).json({ error: "Tweet not found" });
   }
