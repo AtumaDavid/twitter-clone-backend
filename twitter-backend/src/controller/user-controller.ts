@@ -81,6 +81,9 @@ export const getSpecificUser = async (
   //   res.status(501).json({ error: "Not implemented" });
   const { id } = req.params;
   const oneUser = await prisma.user.findUnique({ where: { id: Number(id) } });
+  if (!oneUser) {
+    res.status(404).json({ error: "User not found" });
+  }
   res.json(oneUser);
 };
 

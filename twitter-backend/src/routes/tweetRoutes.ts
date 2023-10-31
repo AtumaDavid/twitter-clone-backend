@@ -8,7 +8,7 @@ import {
 
 const tweetRouter = express.Router();
 
-tweetRouter.post("/createTweet", createTweet);
+tweetRouter.post("/", createTweet);
 tweetRouter.get("/", getAllTweets);
 tweetRouter.get("/:id", getSpecificTweet);
 tweetRouter.delete("/:id", deleteTweet);
