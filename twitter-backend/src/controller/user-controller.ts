@@ -67,7 +67,9 @@ export const getAllUsers = async (
   res: Response,
   next: NextFunction
 ) => {
-  const allUsers = await prisma.user.findMany();
+  const allUsers = await prisma.user.findMany({
+    select: { id: true, name: true, image: true, username: true },
+  });
   res.json(allUsers);
   //   res.status(501).json({ error: "Not implemented" });
 };
@@ -79,11 +81,17 @@ export const getSpecificUser = async (
   next: NextFunction
 ) => {
   //   res.status(501).json({ error: "Not implemented" });
+
   const { id } = req.params;
-  const oneUser = await prisma.user.findUnique({ where: { id: Number(id) } });
+  const oneUser = await prisma.user.findUnique({
+    where: { id: Number(id) },
+    include: { tweets: true },
+  });
+
   if (!oneUser) {
     res.status(404).json({ error: "User not found" });
   }
+
   res.json(oneUser);
 };
 
