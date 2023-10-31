@@ -7,7 +7,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use("/api/user", userRouter);
-app.use("/api/user", tweetRouter);
+app.use("/api/tweet", tweetRouter);
 
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);

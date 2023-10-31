@@ -13,8 +13,20 @@
 
 **Routes**
 
-`user`: Create, Get one, List, Update, Delete
-`Tweets`: Create, Get one, List, Delete
+`user routes`:
+
+- Create
+- Get one tweet
+- List
+- Update
+- Delete
+
+`Tweets routes`:
+
+- Create
+- Get one tweet
+- List
+- Delete
 
 **Build a rest API with Express**
 
