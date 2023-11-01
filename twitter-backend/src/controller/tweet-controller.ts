@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 
@@ -9,12 +10,16 @@ export const createTweet = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { content, userId, image } = req.body;
+  // const { content, userId, image } = req.body;
+  const { content, image } = req.body;
+  // @ts-ignore
+  const user = req.user;
+
   try {
     const result = await prisma.tweet.create({
       data: {
         content,
-        userId,
+        userId: user.id,
         image,
       },
     });
@@ -24,6 +29,7 @@ export const createTweet = async (
   }
 };
 
+// get all tweets
 export const getAllTweets = async (
   req: Request,
   res: Response,
