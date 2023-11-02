@@ -51,7 +51,7 @@
 - `User Provides Email`: To log in, the user provides their email address through the "/login" page.
 - `Create New User`: If the user is new (i.e., their email is not in the system), the backend creates a new user profile for them.
 - `Generate Email Token`: The backend generates a unique email token for this login attempt and stores it in the database. This token is like a temporary key that proves the user's identity.
-- `Send Email Token`: The email token is sent to the user's email address. This is typically done using a service like AWS SES (Simple Email Service). The token is a one-time code that the user needs to verify their identity.
+- `Send Email Token`: The email token is sent to the user's email address. This is typically done using a service like `AWS SES (Simple Email Service)`. The token is a one-time code that the user needs to verify their identity.
 - `User Receives Token`: The user checks their email, receives the token, and copies it.
 - `User Provides Token`: The user then pastes the token into the application.
 - `Authentication Request`: The application sends a request to the "/authenticate" endpoint, including the user's email and the email token they copied from their email.
