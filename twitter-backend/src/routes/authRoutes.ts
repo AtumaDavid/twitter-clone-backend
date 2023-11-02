@@ -4,7 +4,8 @@ import jwt from "jsonwebtoken";
 
 const EMAIL_TOKEN_EXPIRATION_IN_MINUTES = 10;
 const AUTHENTICATION_EXPIRATION_HOURS = 12;
-const JWT_SECRET = "SUPER SECRET";
+// const JWT_SECRET = "SUPER SECRET";
+const JWT_SECRET = process.env.JWT_SECRET || "SUPER SECRET";
 
 const authRouter = Router();
 const prisma = new PrismaClient();
